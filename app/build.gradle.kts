@@ -6,17 +6,17 @@ plugins {
   alias(libs.plugins.google.devtools.ksp)
   alias(libs.plugins.secrets)
   alias(libs.plugins.google.services)
-  id("org.jetbrains.kotlin.plugin.serialization") version "2.2.10"
+  alias(libs.plugins.kotlin.serialization)
 }
 
 android {
   namespace = "com.example"
-  compileSdk { version = release(36) { minorApiLevel = 1 } }
+  compileSdk = 35
 
     defaultConfig {
         applicationId = "com.aistudio.chefsync.xvqp"
         minSdk = 24
-    targetSdk = 36
+    targetSdk = 35
     versionCode = 1
     versionName = "1.0"
 
