@@ -17,17 +17,16 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
+
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
 
     - name: Build with Gradle
       run: |
-        # Intentar usar el wrapper si existe, de lo contrario usar gradle instalado en el runner
-        if [ -f gradlew ]; then
-          chmod +x gradlew
-          ./gradlew assembleDebug
-        else
-          gradle assembleDebug
-        fi
+        # Create a dummy .env if it doesn't exist to satisfy the secrets plugin
+        touch .env
+        # Build the APK
+        gradle assembleDebug --stacktrace
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
